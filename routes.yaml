@@ -15,6 +15,7 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: eycart-svc
@@ -37,10 +38,11 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: fitness-svc
-          port: 3001
+          port: 5000
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -59,10 +61,11 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: flipkart-svc
-          port: 3001
+          port: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -81,10 +84,11 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: flower-svc
-          port: 3001
+          port: 3015
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -103,10 +107,11 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: transaction-svc
-          port: 3001
+          port: 3000
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -125,7 +130,8 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: /
       backendRefs:
         - name: transaction-svc
-          port: 3001
+          port: 3000
