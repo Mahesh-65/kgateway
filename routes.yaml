@@ -1,5 +1,5 @@
 apiVersion: gateway.networking.k8s.io/v1
-kind: HttpRoute
+kind: HTTPRoute
 metadata:
   name: ey-cart-route
   namespace: kgateway-ns
@@ -22,7 +22,7 @@ spec:
           port: 3001
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HttpRoute
+kind: HTTPRoute
 metadata:
   name: fitness-route
   namespace: kgateway-ns
@@ -45,7 +45,7 @@ spec:
           port: 3001
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HttpRoute
+kind: HTTPRoute
 metadata:
   name: flipkart-route
   namespace: kgateway-ns
@@ -68,7 +68,7 @@ spec:
           port: 3001
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HttpRoute
+kind: HTTPRoute
 metadata:
   name: flower-route
   namespace: kgateway-ns
@@ -91,7 +91,7 @@ spec:
           port: 3001
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HttpRoute
+kind: HTTPRoute
 metadata:
   name: transaction-route
   namespace: kgateway-ns
@@ -103,6 +103,29 @@ spec:
       - path:
           type: PathPrefix
           value: /transaction
+      filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            rewriteType: ReplacePrefixMatch
+            replacePrefixMatch: /
+      backendRefs:
+        - name: transaction-svc
+          port: 3001
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: transaction-route
+  namespace: kgateway-ns
+spec:
+  parentRefs:
+    - name: mahesh-kgateway
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
       filters:
       - type: URLRewrite
         urlRewrite:
