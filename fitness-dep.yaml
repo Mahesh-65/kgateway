@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-dep
+  namespace: kgateway-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fitness
+  template:
+    metadata:
+      labels:
+        app: fitness
+    spec:
+      containers:
+      - name: fitness
+        image: muralisocial123/fitness-app:v1.0.1
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fitness-svc
+  namespace: kgateway-ns
+spec:
+  selector:
+    app: fitness
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: ClusterIP
