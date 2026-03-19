@@ -8,15 +8,14 @@ spec:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /eycart
+        - path:
+            type: PathPrefix
+            value: /eycart
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: eycart-svc
           port: 3001
@@ -31,15 +30,14 @@ spec:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /fitness
+        - path:
+            type: PathPrefix
+            value: /fitness
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: fitness-svc
           port: 3001
@@ -54,15 +52,14 @@ spec:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /flipkart
+        - path:
+            type: PathPrefix
+            value: /flipkart
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: flipkart-svc
           port: 3001
@@ -77,15 +74,14 @@ spec:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /flower
+        - path:
+            type: PathPrefix
+            value: /flower
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: flower-svc
           port: 3001
@@ -100,15 +96,14 @@ spec:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /transaction
+        - path:
+            type: PathPrefix
+            value: /transaction
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: transaction-svc
           port: 3001
@@ -116,22 +111,21 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: transaction-route
+  name: transaction-root-route
   namespace: kgateway-ns
 spec:
   parentRefs:
     - name: mahesh-kgateway
   rules:
     - matches:
-      - path:
-          type: PathPrefix
-          value: /
+        - path:
+            type: PathPrefix
+            value: /
       filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            rewriteType: ReplacePrefixMatch
-            replacePrefixMatch: /
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              replacePrefixMatch: /
       backendRefs:
         - name: transaction-svc
           port: 3001
