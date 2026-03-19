@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fitness-dep
+  name: flipkart-dep
   namespace: kgateway-ns
 spec:
   replicas: 2
@@ -12,34 +12,34 @@ spec:
       maxSurge: 25%
   selector:
     matchLabels:
-      app: fitness
+      app: flipkart
   template:
     metadata:
       labels:
-        app: fitness
+        app: flipkart
     spec:
       containers:
-      - name: fitness
-        image: muralisocial123/fitness-app:v1.0.1
+      - name: flipkart
+        image: muralisocial123/flipkart-clone-kuberox:v1.1.0
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
           requests:
+            cpu: "150m"
+            memory: "128Mi"
+          limits:
+            cpu: "400m"
             memory: "256Mi"
-            cpu: "250m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: fitness-svc
+  name: flipkart-svc
   namespace: kgateway-ns
 spec:
   selector:
-    app: fitness
+    app: flipkart
   ports:
-  - port: 5000
-    targetPort: 5000
+  - port: 80
+    targetPort: 80
   type: ClusterIP
