@@ -18,7 +18,7 @@ spec:
               replacePrefixMatch: /
       backendRefs:
         - name: fitness-tracker-service
-          port: 80
+          port: 81
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -40,7 +40,7 @@ spec:
               replacePrefixMatch: /
       backendRefs:
         - name: hospital-service
-          port: 81
+          port: 82
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -62,7 +62,7 @@ spec:
               replacePrefixMatch: /
       backendRefs:
         - name: hospital-service
-          port: 81
+          port: 82
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -84,4 +84,4 @@ spec:
               replacePrefixMatch: /
       backendRefs:
         - name: capsule-service
-          port: 82
+          port: 83
