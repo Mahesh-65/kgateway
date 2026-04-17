@@ -3,17 +3,21 @@ kind: HTTPRoute
 metadata:
   name: GatherGenieRoute
   namespace: keycloak-ns
+
 spec:
   hostnames:
     - keycloak.gathergenie.in
+
   parentRefs:
     - name: kgateway
       namespace: kgateway-ns
+
   rules:
-    matches:
-      - path:
-          type: PathPrefix
-          value: /
-    backendRefs:
-      name: keycloak-svc
-      port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+      backendRefs:
+        - name: keycloak-svc
+          port: 8080
